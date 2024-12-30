@@ -6,6 +6,9 @@ Shape::Shape(){
 }
 
 Shape::Shape(string col){
+    if(col != "red" &&  col != "blue" && col != "green"){
+           throw std::invalid_argument("color invalido");
+       }
     color=col;
 }
 
