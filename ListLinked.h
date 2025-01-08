@@ -24,12 +24,12 @@ public:
 	}
 
 	T operator[](int pos){
-	    if(pos < 1 || pos > n){   
+	    if(pos < 0 || pos > n-1){   
 	        throw std::out_of_range("posicion inexistente");
 	    }
 	    else{
 	        Node<T>* aux = first;
-	        for(int i = 1;i<pos+1;i++){
+	        for(int i = 0;i<pos;i++){
 		   aux = aux->next;
 		}	
 		return aux->data;
@@ -48,17 +48,17 @@ public:
 	}
 
 	void insert(int pos, T e) override {
-	    if(pos < 1 || pos > n+1 ){
+	    if(pos < 0 || pos > n ){
 		throw std::out_of_range("posicion inexistente");
 	    }
-	    else if(pos == 1){
+	    else if(pos == 0){
 		first = new Node(e,first);
 		n++;
 	    }
 	    else{
 		Node<T>* aux = first;
 		Node<T>* aux2;
-		for(int i=1;i<pos-1;i++){
+		for(int i=0;i<pos-1;i++){
 		  aux=aux->next;
 		}
 		aux2=aux->next;
@@ -75,10 +75,10 @@ public:
 	}
 	T remove(int pos) override{
 	    T value;
-   	    if(pos < 1 || pos >= n ){
+   	    if(pos < 0 || pos > n-1 ){
 	        throw std::out_of_range("posicion inexistente");
 	    }
-	    else if(pos == 1){
+	    else if(pos == 0){
 		T value = first->data;
 		Node<T>* aux = first->next;
 	        delete first;
@@ -88,7 +88,7 @@ public:
 		T value;
 	        Node<T>* aux = first;
 	        Node<T>* aux2;
-	        for(int i=1;i<pos;i++){
+	        for(int i=0;i<pos;i++){
 		    aux=aux->next;
 		}
 	        aux2=aux->next;
@@ -106,7 +106,7 @@ public:
 
         int search(T e) override{
             int pos = -1;
-            for(int i=1;i<n+1;i++){
+            for(int i=0;i<n;i++){
                  if((*this)[i]==e){
                      pos = i;
                      break;
