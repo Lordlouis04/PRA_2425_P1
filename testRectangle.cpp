@@ -1,4 +1,6 @@
 #include "Point2D.h"
+#include <iostream>
+#include "Rectangle.h"
 
 int main(){
     Point2D* vertices = new Point2D[4];
